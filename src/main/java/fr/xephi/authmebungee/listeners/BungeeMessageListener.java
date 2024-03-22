@@ -130,7 +130,7 @@ public class BungeeMessageListener implements Listener, SettingsDependent {
     AuthMeBungee.INSTANCE.getLogger().info("DEBUG - incoming -> totp-enabled " + name);
     final AuthPlayer authPlayer = authPlayerManager.getAuthPlayer(name);
     if (authPlayer != null) {
-      authPlayer.setTotpEnabled(true);
+            authPlayer.setTotpEnabled(true);
     }
   }
 
