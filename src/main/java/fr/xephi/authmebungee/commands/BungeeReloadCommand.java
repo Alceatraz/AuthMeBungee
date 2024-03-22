@@ -12,22 +12,22 @@ import javax.inject.Inject;
 
 public class BungeeReloadCommand extends Command {
 
-    private SettingsManager settings;
-    private SingletonStore<SettingsDependent> settingsDependentStore;
+  private final SettingsManager settings;
+  private final SingletonStore<SettingsDependent> settingsDependentStore;
 
-    @Inject
-    public BungeeReloadCommand(SettingsManager settings, SingletonStore<SettingsDependent> settingsDependentStore) {
-        super("abreloadproxy", "authmebungee.reload");
-        this.settings = settings;
-        this.settingsDependentStore = settingsDependentStore;
-    }
+  @Inject
+  public BungeeReloadCommand(SettingsManager settings, SingletonStore<SettingsDependent> settingsDependentStore) {
+    super("abreloadproxy", "authmebungee.reload");
+    this.settings = settings;
+    this.settingsDependentStore = settingsDependentStore;
+  }
 
-    @Override
-    public void execute(CommandSender commandSender, String[] strings) {
-        settings.reload();
-        settingsDependentStore.retrieveAllOfType().forEach(settingsDependent -> settingsDependent.reload(settings));
-        commandSender.sendMessage(
-            new ComponentBuilder("AuthMeBungee configuration reloaded!").color(ChatColor.GREEN).create()
-        );
-    }
+  @Override
+  public void execute(CommandSender commandSender, String[] strings) {
+    settings.reload();
+    settingsDependentStore.retrieveAllOfType().forEach(settingsDependent -> settingsDependent.reload(settings));
+    commandSender.sendMessage(
+      new ComponentBuilder("AuthMeBungee configuration reloaded!").color(ChatColor.GREEN).create()
+    );
+  }
 }

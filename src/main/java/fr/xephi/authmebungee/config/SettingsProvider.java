@@ -12,26 +12,25 @@ import java.io.File;
  */
 public abstract class SettingsProvider implements Provider<SettingsManager> {
 
-    private File dataFolder;
+  private final File dataFolder;
+  private final Class<? extends SettingsHolder> properties;
 
-    private Class<? extends SettingsHolder> properties;
+  protected SettingsProvider(File dataFolder, Class<? extends SettingsHolder> properties) {
+    this.dataFolder = dataFolder;
+    this.properties = properties;
+  }
 
-    protected SettingsProvider(File dataFolder, Class<? extends SettingsHolder> properties) {
-        this.dataFolder = dataFolder;
-        this.properties = properties;
-    }
-
-    /**
-     * Loads the plugin's settings.
-     *
-     * @return the settings instance, or null if it could not be constructed
-     */
-    @Override
-    public SettingsManager get() {
-        File configFile = new File(dataFolder, "config.yml");
-        return SettingsManagerBuilder.withYamlFile(configFile)
-            .useDefaultMigrationService()
-            .configurationData(properties)
-            .create();
-    }
+  /**
+   * Loads the plugin's settings.
+   *
+   * @return the settings instance, or null if it could not be constructed
+   */
+  @Override
+  public SettingsManager get() {
+    File configFile = new File(dataFolder, "config.yml");
+    return SettingsManagerBuilder.withYamlFile(configFile)
+      .useDefaultMigrationService()
+      .configurationData(properties)
+      .create();
+  }
 }

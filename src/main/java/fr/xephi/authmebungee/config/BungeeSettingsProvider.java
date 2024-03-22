@@ -7,9 +7,9 @@ import java.io.File;
 
 public class BungeeSettingsProvider extends SettingsProvider {
 
-    @Inject
-    public BungeeSettingsProvider(@DataFolder File dataFolder) {
-        super(dataFolder, BungeeConfigProperties.class);
-    }
+  @Inject
+  public BungeeSettingsProvider(@DataFolder File dataFolder) {
+    super(dataFolder, BungeeConfigProperties.class);
+  }
 
 }

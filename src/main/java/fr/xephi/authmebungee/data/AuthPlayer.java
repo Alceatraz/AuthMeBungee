@@ -5,41 +5,51 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class AuthPlayer {
 
-    private String name;
-    private boolean isLogged;
+  private final String name;
 
-    public AuthPlayer(String name, boolean isLogged) {
-        this.name = name.toLowerCase();
-        this.isLogged = isLogged;
-    }
+  private boolean isLogged;
+  private boolean totpEnabled;
 
-    public AuthPlayer(String name) {
-        this(name, false);
-    }
+  public AuthPlayer(String name, boolean isLogged) {
+    this.name = name.toLowerCase();
+    this.isLogged = isLogged;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public AuthPlayer(String name) {
+    this(name, false);
+  }
 
-    public boolean isLogged() {
-        return isLogged;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setLogged(boolean isLogged) {
-        this.isLogged = isLogged;
-    }
+  public boolean isLogged() {
+    return isLogged;
+  }
 
-    public ProxiedPlayer getPlayer() {
-        for (ProxiedPlayer current : ProxyServer.getInstance().getPlayers()) {
-            if (current.getName().equalsIgnoreCase(name)) {
-                return current;
-            }
-        }
-        return null;
-    }
+  public void setLogged(boolean isLogged) {
+    this.isLogged = isLogged;
+  }
 
-    public boolean isOnline() {
-        return getPlayer() != null;
+  public boolean isTotpEnabled() {
+    return totpEnabled;
+  }
+
+  public void setTotpEnabled(boolean totpEnabled) {
+    this.totpEnabled = totpEnabled;
+  }
+
+  public boolean isOnline() {
+    return getPlayer() != null;
+  }
+
+  public ProxiedPlayer getPlayer() {
+    for (ProxiedPlayer current : ProxyServer.getInstance().getPlayers()) {
+      if (current.getName().equalsIgnoreCase(name)) {
+        return current;
+      }
     }
+    return null;
+  }
 
 }

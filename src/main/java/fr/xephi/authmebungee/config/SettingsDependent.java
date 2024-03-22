@@ -7,11 +7,11 @@ import ch.jalu.configme.SettingsManager;
  */
 public interface SettingsDependent {
 
-    /**
-     * Performs a reload with the provided settings instance.
-     *
-     * @param settings the settings instance
-     */
-    void reload(SettingsManager settings);
+  /**
+   * Performs a reload with the provided settings instance.
+   *
+   * @param settings the settings instance
+   */
+  void reload(SettingsManager settings);
 
 }
